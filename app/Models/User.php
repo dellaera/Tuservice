@@ -18,9 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellido',
         'email',
+        'telefono',
         'password',
+        'rol',
     ];
 
     /**
@@ -42,4 +45,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Relación: negocios administrados por el usuario (dueño).
+     */
+    public function negocios()
+    {
+        return $this->hasMany(Negocio::class, 'usuario_id');
+    }
+
+    /**
+     * Relación: profesional asociado (cuando rol = profesional).
+     */
+    public function profesional()
+    {
+        return $this->hasOne(Profesional::class, 'usuario_id');
+    }
 }
