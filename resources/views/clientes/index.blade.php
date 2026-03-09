@@ -32,7 +32,7 @@
                             <td>{{ $cliente->nombre }}</td>
                             <td>{{ $cliente->telefono ?? '—' }}</td>
                             <td>{{ $cliente->email ?? '—' }}</td>
-                            <td>{{ Str::limit($cliente->notas, 40) }}</td>
+                            <td>{{ \Illuminate\Support\Str::limit($cliente->notas, 40) }}</td>
                             <td class="text-end">
                                 <a href="{{ route('clientes.edit', $cliente) }}" class="btn btn-sm btn-outline-primary">Editar</a>
                                 <form action="{{ route('clientes.destroy', $cliente) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Eliminar este cliente?');">

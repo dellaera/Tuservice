@@ -5,6 +5,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\TurnoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,4 +37,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('servicios', ServicioController::class)->except(['show']);
     Route::resource('profesionales', ProfesionalController::class)->except(['show']);
     Route::resource('clientes', ClienteController::class)->except(['show']);
+    Route::resource('turnos', TurnoController::class)->except(['show']);
 });
