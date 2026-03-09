@@ -7,6 +7,14 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## PWA rápido
+
+El dashboard incluye los archivos base de PWA (`public/manifest.json` y `public/service-worker.js`) y se registran desde `resources/views/layouts/app.blade.php`.
+
+1. Levantá la app con `php artisan serve` (HTTPS o `localhost` para que el service worker se registre).
+2. Abrí `http://127.0.0.1:8000/dashboard`, inspeccioná con Chrome DevTools > Application > Manifest y verificá que el service worker esté "activated".
+3. Personalizá los íconos referenciados en `/public/icons/*` para que cumplan con los tamaños 192px y 512px.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
