@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ServicioController;
@@ -34,4 +35,5 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('servicios', ServicioController::class)->except(['show']);
     Route::resource('profesionales', ProfesionalController::class)->except(['show']);
+    Route::resource('clientes', ClienteController::class)->except(['show']);
 });
