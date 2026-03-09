@@ -16,7 +16,7 @@ class SubscriptionPlansSeeder extends Seeder
             [
                 'nombre' => 'Trial 7 días',
                 'slug' => 'trial',
-                'descripcion' => 'Prueba gratuita sin tarjeta de crédito.',
+                'descripcion' => 'Prueba gratuita en pesos, sin tarjeta de crédito.',
                 'precio_mensual' => 0,
                 'max_profesionales' => 1,
                 'max_turnos_mensuales' => 50,
@@ -27,8 +27,8 @@ class SubscriptionPlansSeeder extends Seeder
             [
                 'nombre' => 'Plan Básico',
                 'slug' => 'basico',
-                'descripcion' => '1 profesional, agenda, clientes y servicios ilimitados.',
-                'precio_mensual' => 9,
+                'descripcion' => '1 profesional, agenda, clientes y servicios ilimitados en pesos.',
+                'precio_mensual' => 12000,
                 'max_profesionales' => 1,
                 'max_turnos_mensuales' => 200,
                 'incluye_recordatorios' => false,
@@ -38,8 +38,8 @@ class SubscriptionPlansSeeder extends Seeder
             [
                 'nombre' => 'Plan Pro',
                 'slug' => 'pro',
-                'descripcion' => 'Profesionales y turnos ilimitados, estadísticas y recordatorios.',
-                'precio_mensual' => 14,
+                'descripcion' => 'Profesionales y turnos ilimitados, estadísticas y recordatorios en pesos.',
+                'precio_mensual' => 19000,
                 'max_profesionales' => null,
                 'max_turnos_mensuales' => null,
                 'incluye_recordatorios' => true,
@@ -51,7 +51,7 @@ class SubscriptionPlansSeeder extends Seeder
         DB::table('subscription_plans')->upsert(
             array_map(function ($plan) {
                 return array_merge($plan, [
-                    'moneda' => 'USD',
+                    'moneda' => 'ARS',
                     'activo' => true,
                     'created_at' => now(),
                     'updated_at' => now(),
