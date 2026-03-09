@@ -24,13 +24,17 @@ class RubrosSeeder extends Seeder
             'consultorios',
         ];
 
-        DB::table('rubros')->insert(collect($rubros)->map(function ($nombre) {
-            return [
-                'nombre' => Str::title(str_replace('_', ' ', $nombre)),
-                'slug' => Str::slug($nombre),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        })->all());
+        DB::table('rubros')->upsert(
+            collect($rubros)->map(function ($nombre) {
+                return [
+                    'nombre' => Str::title(str_replace('_', ' ', $nombre)),
+                    'slug' => Str::slug($nombre),
+                    'updated_at' => now(),
+                    'created_at' => now(),
+                ];
+            })->all(),
+            uniqueBy: ['slug'],
+            update: ['nombre', 'updated_at']
+        );
     }
 }

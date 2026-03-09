@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class SubscriptionPlansSeeder extends Seeder
 {
@@ -49,13 +48,29 @@ class SubscriptionPlansSeeder extends Seeder
             ],
         ];
 
-        DB::table('subscription_plans')->insert(array_map(function ($plan) {
-            return array_merge($plan, [
-                'moneda' => 'USD',
-                'activo' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }, $planes));
+        DB::table('subscription_plans')->upsert(
+            array_map(function ($plan) {
+                return array_merge($plan, [
+                    'moneda' => 'USD',
+                    'activo' => true,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }, $planes),
+            uniqueBy: ['slug'],
+            update: [
+                'nombre',
+                'descripcion',
+                'precio_mensual',
+                'max_profesionales',
+                'max_turnos_mensuales',
+                'incluye_recordatorios',
+                'incluye_estadisticas',
+                'incluye_reportes',
+                'moneda',
+                'activo',
+                'updated_at',
+            ]
+        );
     }
 }
