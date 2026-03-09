@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('negocios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('usuario_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('rubro_id')->nullable()->constrained('rubros')->nullOnDelete();
+            $table->string('nombre');
+            $table->string('descripcion', 500)->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('ciudad')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('email')->nullable();
+            $table->string('slug')->unique();
+            $table->string('sitio_web')->nullable();
+            $table->string('timezone')->default('America/Argentina/Buenos_Aires');
+            $table->timestamp('trial_ends_at')->nullable();
             $table->timestamps();
         });
     }

@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('subscription_plans', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('slug')->unique();
+            $table->string('descripcion')->nullable();
+            $table->decimal('precio_mensual', 8, 2)->default(0);
+            $table->string('moneda', 3)->default('USD');
+            $table->unsignedInteger('max_profesionales')->nullable();
+            $table->unsignedInteger('max_turnos_mensuales')->nullable();
+            $table->boolean('incluye_recordatorios')->default(false);
+            $table->boolean('incluye_estadisticas')->default(false);
+            $table->boolean('incluye_reportes')->default(false);
+            $table->boolean('activo')->default(true);
             $table->timestamps();
         });
     }
